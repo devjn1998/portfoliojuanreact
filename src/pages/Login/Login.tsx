@@ -76,7 +76,6 @@ const Login: React.FC = () => {
           <Botao 
             type="submit" 
             className={`w-full ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={loading}
           >
             {loading ? 'Entrando...' : 'Entrar'}
           </Botao>

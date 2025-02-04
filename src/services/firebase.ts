@@ -1,14 +1,18 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from "firebase/auth";
 
+if (!process.env.REACT_APP_FIREBASE_API_KEY) {
+  throw new Error('Missing Firebase API Key');
+}
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBLfmi48VEV1OEQCthPBSSEswpEowdfSM8",
-  authDomain: "portfoliojuan-9e27b.firebaseapp.com",
-  projectId: "portfoliojuan-9e27b",
-  storageBucket: "portfoliojuan-9e27b.firebasestorage.app",
-  messagingSenderId: "24873500726",
-  appId: "1:24873500726:web:88053531d7ba6960bd1897",
-  measurementId: "G-MQPFBJ0HYW"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
