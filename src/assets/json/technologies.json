@@ -1,0 +1,202 @@
+{
+    "technologies": [
+        {
+            "id": 1,
+            "name": "JavaScript",
+            "category": "Frontend",
+            "icon_path": "/icons/icon-javascript.png"
+        },
+        {
+            "id": 2,
+            "name": "HTML5",
+            "category": "Frontend",
+            "icon_path": "/icons/icon-html.png"
+        },
+        {
+            "id": 3,
+            "name": "CSS3",
+            "category": "Frontend",
+            "icon_path": "/icons/icon-css.png"
+        },
+        {
+            "id": 4,
+            "name": "React",
+            "category": "Frontend",
+            "icon_path": "/icons/icon-react.png"
+        },
+        {
+            "id": 5,
+            "name": "Vue.js",
+            "category": "Frontend",
+            "icon_path": "/icons/icon-vue.png"
+        },
+        {
+            "id": 6,
+            "name": "Angular",
+            "category": "Frontend",
+            "icon_path": "/icons/icon-angular.png"
+        },
+        {
+            "id": 7,
+            "name": "Sass",
+            "category": "Frontend",
+            "icon_path": "/icons/icon-sass.png"
+        },
+        {
+            "id": 8,
+            "name": "Tailwind CSS",
+            "category": "Frontend",
+            "icon_path": "/icons/-icon-tailwindcss.png"
+        },
+        {
+            "id": 9,
+            "name": "Bootstrap",
+            "category": "Frontend",
+            "icon_path": "/icons/icon-bootstrap.png"
+        },
+        {
+            "id": 10,
+            "name": "TypeScript",
+            "category": "Frontend",
+            "icon_path": "/icons/icon-typescript.png"
+        },
+        {
+            "id": 11,
+            "name": "Node.js",
+            "category": "Backend",
+            "icon_path": "/icons/icon-nodejs.png"
+        },
+        {
+            "id": 12,
+            "name": "Express.js",
+            "category": "Backend",
+            "icon_path": "/icons/icon-expressjs.png"
+        },
+        {
+            "id": 13,
+            "name": "Python",
+            "category": "Backend",
+            "icon_path": "/icons/icon-python.png"
+        },
+        {
+            "id": 14,
+            "name": "Django",
+            "category": "Backend",
+            "icon_path": "/icons/icon-django.png"
+        },
+        {
+            "id": 15,
+            "name": "Flask",
+            "category": "Backend",
+            "icon_path": "/icons/icon-flask.png"
+        },
+        {
+            "id": 16,
+            "name": "Ruby on Rails",
+            "category": "Backend",
+            "icon_path": "/icons/icon-ruby-on-rails.png"
+        },
+        {
+            "id": 17,
+            "name": "PHP",
+            "category": "Backend",
+            "icon_path": "/icons/icon-php.png"
+        },
+        {
+            "id": 18,
+            "name": "Laravel",
+            "category": "Backend",
+            "icon_path": "/icons/icon-laravel.png"
+        },
+        {
+            "id": 19,
+            "name": "Java",
+            "category": "Backend",
+            "icon_path": "/icons/icon-java.png"
+        },
+        {
+            "id": 20,
+            "name": "Spring Boot",
+            "category": "Backend",
+            "icon_path": "/icons/icon-spring.png"
+        },
+        {
+            "id": 21,
+            "name": "Go",
+            "category": "Backend",
+            "icon_path": "/icons/icon-go.png"
+        },
+        {
+            "id": 22,
+            "name": "C#",
+            "category": "Backend",
+            "icon_path": "/icons/icon-csharp.png"
+        },
+        {
+            "id": 23,
+            "name": "ASP.NET",
+            "category": "Backend",
+            "icon_path": "/icons/icon-aspnet.png"
+        },
+        {
+            "id": 24,
+            "name": "MongoDB",
+            "category": "Backend",
+            "icon_path": "/icons/icon-mongodb.png"
+        },
+        {
+            "id": 25,
+            "name": "PostgreSQL",
+            "category": "Backend",
+            "icon_path": "/icons/icon-postgresql.png"
+        },
+        {
+            "id": 26,
+            "name": "MySQL",
+            "category": "Backend",
+            "icon_path": "/icons/icon-mysql.png"
+        },
+        {
+            "id": 27,
+            "name": "SQLite",
+            "category": "Backend",
+            "icon_path": "/icons/icon-sqlite.png"
+        },
+        {
+            "id": 28,
+            "name": "Redis",
+            "category": "Backend",
+            "icon_path": "/icons/icon-redis.png"
+        },
+        {
+            "id": 29,
+            "name": "GraphQL",
+            "category": "Backend",
+            "icon_path": "/icons/icon-graphql.png"
+        },
+        {
+            "id": 30,
+            "name": "Docker",
+            "category": "Backend",
+            "icon_path": "/icons/icon-docker.png"
+        },
+        {
+            "id": 31,
+            "name": "Kubernetes",
+            "category": "Backend",
+            "icon_path": "/icons/icon-kubernetes.png"
+        },
+        {
+            "id": 32,
+            "name": "AWS",
+            "category": "Backend",
+            "icon_path": "/icons/icon-aws.png"
+        },
+        {
+            "id": 33,
+            "name": "Heroku",
+            "category": "Backend",
+            "icon_path": "/icons/icon-heroku.png"
+        }
+    ]
+}
