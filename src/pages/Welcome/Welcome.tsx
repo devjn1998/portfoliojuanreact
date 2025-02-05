@@ -46,14 +46,18 @@ const Welcome: React.FC = () => {
                    alt="Olá Eu Sou Juan" />
               
               <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 pt-7">
-                <a href="https://drive.google.com/drive/folders/1zRo5mDJs5gTjvLfefBpt35v765bm5soV" 
-                   target="_blank"
-                   className="w-full sm:w-auto text-center bg-gradient-to-r from-[#0510a1] to-[#010b63] px-5 py-2.5 text-white font-bold rounded-full border border-[#408bec] transition-all duration-200 hover:bg-gradient-to-r hover:from-[#0d1ced] hover:to-[#408bec] hover:border-none hover:scale-98">
+                <a 
+                  href="https://drive.google.com/drive/folders/1zRo5mDJs5gTjvLfefBpt35v765bm5soV" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto text-center bg-gradient-to-r from-[#0510a1] to-[#010b63] px-5 py-2.5 text-white font-bold rounded-full border border-[#408bec] transition-all duration-200 hover:bg-gradient-to-r hover:from-[#0d1ced] hover:to-[#408bec] hover:border-none hover:scale-98">
                   Download CV
                 </a>
-                <a href="https://contate.me/desenvolvedorjuanmacedo"
-                   target="_blank" 
-                   className="w-full sm:w-auto text-center bg-transparent px-5 py-2.5 rounded-full border border-[#408bec] transition-all duration-200 hover:bg-gradient-to-r hover:from-[#0d1ced] hover:to-[#408bec] hover:border-none hover:scale-98">
+                <a 
+                  href="https://contate.me/desenvolvedorjuanmacedo"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto text-center bg-transparent px-5 py-2.5 rounded-full border border-[#408bec] transition-all duration-200 hover:bg-gradient-to-r hover:from-[#0d1ced] hover:to-[#408bec] hover:border-none hover:scale-98">
                   Entrar em contato
                 </a>
               </div>
