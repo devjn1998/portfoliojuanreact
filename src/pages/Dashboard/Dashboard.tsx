@@ -3,9 +3,6 @@ import Title from '../../components/comum/Title/Title.tsx';
 import Botao from '../../components/comum/Botao/Botao.tsx';
 import { projectService } from '../../services/firebase.ts';
 
-interface Technology {
-  name: string;
-}
 
 interface Project {
   id: string;

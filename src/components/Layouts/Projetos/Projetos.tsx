@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Title from '../../comum/Title/Title.tsx';
 import { projectService } from '../../../services/firebase.ts';
-import { uploadImage } from '../../../services/cloudinary.ts';
 
 interface Technology {
   name: string;
