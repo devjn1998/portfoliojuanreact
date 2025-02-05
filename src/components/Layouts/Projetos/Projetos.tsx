@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Title from '../../comum/Title/Title.tsx';
-import { projectService } from '../../../services/api.ts';
+import { projectService } from '../../../services/firebase.ts';
+import { uploadImage } from '../../../services/cloudinary.ts';
 
 interface Technology {
   name: string;
 }
 
 interface Project {
-  id: number;
+  id: string;
   title: string;
   description: string;
   image: string;
@@ -28,15 +29,16 @@ const Projetos: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const timestamp = new Date().getTime();
-        const response = await projectService.getAll(timestamp);
+        const response = await projectService.getAll();
         
         if (Array.isArray(response)) {
           const validProjects = response.filter(project => {
             return project && 
-              typeof project.id === 'number' &&
+              typeof project.id === 'string' &&
               typeof project.title === 'string' &&
-              project.image;
+              project.image &&
+              project.description &&
+              Array.isArray(project.technologies);
           });
           setProjects(validProjects);
         } else {

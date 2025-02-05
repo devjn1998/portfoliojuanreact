@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Title from '../../components/comum/Title/Title.tsx';
 import Botao from '../../components/comum/Botao/Botao.tsx';
 import technologiesData from '../../assets/json/technologies.json';
-import { projectService } from '../../services/api.ts';
+import { projectService } from '../../services/firebase.ts';
 import { useNavigate } from 'react-router-dom';
 
 interface FormData {

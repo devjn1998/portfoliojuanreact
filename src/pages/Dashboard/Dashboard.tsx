@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import Title from '../../components/comum/Title/Title.tsx';
 import Botao from '../../components/comum/Botao/Botao.tsx';
-import { projectService } from '../../services/api.ts';
+import { projectService } from '../../services/firebase.ts';
 
 interface Technology {
   name: string;
 }
 
 interface Project {
-  id: number;
+  id: string;
   title: string;
   description: string;
   image: string;
-  imagegif: string;
+  imageGif?: string;
   urlsite?: string;
   urlrepository?: string;
-  technologies: Technology[];
+  technologies: { name: string }[];
+  createdAt?: Date;
 }
 
 const Dashboard: React.FC = () => {
@@ -29,21 +30,8 @@ const Dashboard: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const timestamp = new Date().getTime();
-        const response = await projectService.getAll(timestamp);
-        
-        if (Array.isArray(response)) {
-          const validProjects = response.filter(project => {
-            return project && 
-              typeof project.id === 'number' &&
-              typeof project.title === 'string' &&
-              project.image;
-          });
-          setProjects(validProjects);
-        } else {
-          setProjects([]);
-          setError('Nenhum projeto encontrado');
-        }
+        const data = await projectService.getAll();
+        setProjects(data as Project[]);
       } catch (error) {
         console.error('Erro ao carregar projetos:', error);
         setError('Erro ao carregar projetos. Por favor, tente novamente.');
@@ -56,11 +44,11 @@ const Dashboard: React.FC = () => {
     loadProjects();
   }, []);
 
-  const deleteProject = async (id: number) => {
+  const deleteProject = async (id: string) => {
     if (window.confirm('Tem certeza que deseja excluir este projeto?')) {
       try {
         await projectService.delete(id);
-        setProjects(prevProjects => prevProjects.filter(p => p.id !== id));
+        setProjects(prev => prev.filter(p => p.id !== id));
         setSelectedProject(null);
       } catch (error) {
         console.error('Erro ao deletar projeto:', error);
