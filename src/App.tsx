@@ -11,6 +11,9 @@ import Login from './pages/Login/Login.tsx';
 import { auth } from './services/firebase.ts';
 import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseService } from './services/firebase.ts';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -23,6 +26,31 @@ function App() {
     });
 
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    // Inicializa AOS
+    if (typeof AOS !== 'undefined') {
+      AOS.init();
+    }
+
+    // Gerencia mensagem temporária
+    const message = document.getElementById('message');
+    if (message) {
+      const timer1 = setTimeout(() => {
+        message.classList.add('msg-hidden');
+      }, 1500);
+
+      const timer2 = setTimeout(() => {
+        message.remove();
+      }, 3000);
+
+      // Limpa os timeouts quando o componente for desmontado
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    }
   }, []);
 
   const handleLogout = async () => {
@@ -65,6 +93,7 @@ function App() {
             element={<Login />}
           />
         </Routes>
+        
       </div>
     </Router>
   );
