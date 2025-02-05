@@ -47,7 +47,7 @@ const Welcome: React.FC = () => {
                 src={logoImage}
                 alt="Olá Eu Sou Juan"
                 delay={3000}
-                className="w-full max-w-md mx-auto lg:mx-0 cursor-pointer transition-transform duration-300"
+                className="w-full max-w-[300px] sm:max-w-md mx-auto lg:mx-0 cursor-pointer transition-transform duration-300"
               />
               
               <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 pt-7">
