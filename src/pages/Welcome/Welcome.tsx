@@ -29,6 +29,7 @@ const Welcome: React.FC = () => {
       };
     };
 
+
     handleImageHover("imgFoto");
     handleImageHover("imgLogo");
   }, []);
@@ -37,7 +38,7 @@ const Welcome: React.FC = () => {
     <div className="min-h-screen bg-[#13131f] text-white">
       {/* Landing Page Section */}
       <section id="landing-page" style={{backgroundImage: `url(${backgroundImage})`}} className="bg-center bg-cover min-h-screen">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">  
           <div className="flex flex-col lg:flex-row justify-between items-center pt-10 lg:pt-20 gap-8">
             <div className="contacts w-full lg:w-1/2" data-aos="fade-right" data-aos-delay="500">
               <img id="imgLogo" 
