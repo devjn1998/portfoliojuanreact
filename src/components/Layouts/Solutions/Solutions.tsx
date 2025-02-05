@@ -1,9 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import solutionsImage from '../../../assets/img/soluctionsapresentation.png';
 import backgroundImage from '../../../assets/img/background-apresentation-2.png';
 import Botao from '../../comum/Botao/Botao.tsx';
+import Title from '../../comum/Title/Title.tsx';
+import emailjs from '@emailjs/browser';
 
 const Solutions: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<'success' | 'error' | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus(null);
+
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'juandev1998@gmail.com'
+      };
+
+      await emailjs.send(
+        'service_cu7r3pp',
+        'template_qcwzcbc',
+        templateParams,
+        'GopptU0helcG_Jjpd'
+      );
+
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Erro ao enviar email:', error);
+      setStatus('error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div 
       className="min-h-screen w-full bg-cover bg-center py-12 px-4 text-white"
@@ -21,66 +69,65 @@ const Solutions: React.FC = () => {
           </div>
 
           <div className="w-full lg:w-1/2">
-            <form 
-              id="contact-me" 
-              className="bg-black/20 backdrop-blur-sm border border-white/20 rounded-lg p-6 max-w-md mx-auto"
-              action="https://formsubmit.co/juandev1998@gmail.com"
-              method="POST"
-              encType="multipart/form-data"
-            >
-              <h2 className="text-2xl font-bold text-center mb-6">Me envie uma mensagem</h2>
-              
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="nome" className="block text-sm font-medium mb-1">Seu nome:</label>
-                  <input 
-                    type="text" 
-                    name="nome" 
-                    id="nome"
-                    className="w-full bg-transparent border border-white/40 rounded-lg p-2 focus:border-[#408bec] focus:outline-none transition-colors" 
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-1">Seu e-mail:</label>
-                  <input 
-                    type="email" 
-                    name="email" 
-                    id="email"
-                    className="w-full bg-transparent border border-white/40 rounded-lg p-2 focus:border-[#408bec] focus:outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="telefone" className="block text-sm font-medium mb-1">Seu telefone:</label>
-                  <input 
-                    type="tel" 
-                    name="telefone" 
-                    id="telefone"
-                    className="w-full bg-transparent border border-white/40 rounded-lg p-2 focus:border-[#408bec] focus:outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="mensagem" className="block text-sm font-medium mb-1">Mensagem:</label>
-                  <textarea 
-                    name="mensagem" 
-                    id="mensagem"
-                    rows={4}
-                    className="w-full bg-transparent border border-white/40 rounded-lg p-2 focus:border-[#408bec] focus:outline-none transition-colors resize-none"
-                  ></textarea>
-                </div>
-
-                <div className="text-center">
-                  <Botao tipo="nav" className="w-full sm:w-auto">
-                    Enviar
-                  </Botao>
-                </div>
+            <Title className="text-2xl font-bold text-center mb-12">Entre em Contato</Title>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-white mb-2">Nome</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full p-3 rounded bg-[#202024] text-white border border-[#408bec] focus:outline-none focus:border-[#5a9fff]"
+                />
               </div>
 
-              <input type="hidden" name="_subject" value="Alguém enviou uma mensagem do site Juan Dev" />
-              <input type="text" name="_honey" style={{display: 'none'}} />
-              <input type="hidden" name="_captcha" value="false" />
+              <div>
+                <label className="block text-white mb-2">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full p-3 rounded bg-[#202024] text-white border border-[#408bec] focus:outline-none focus:border-[#5a9fff]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-white mb-2">Mensagem</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  className="w-full p-3 rounded bg-[#202024] text-white border border-[#408bec] focus:outline-none focus:border-[#5a9fff]"
+                />
+              </div>
+
+              <Botao
+                type="submit"
+                disabled={loading}
+                className={`w-full bg-[#408bec] text-white py-3 rounded transition-all duration-300 
+                  ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#5a9fff]'}`}
+              >
+                {loading ? 'Enviando...' : 'Enviar Mensagem'}
+              </Botao>
+
+              {status === 'success' && (
+                <div className="text-green-500 text-center">
+                  Mensagem enviada com sucesso!
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className="text-red-500 text-center">
+                  Erro ao enviar mensagem. Tente novamente.
+                </div>
+              )}
             </form>
           </div>
         </div>
