@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Title from '../../comum/Title/Title.tsx';
 import { projectService } from '../../../services/firebase.ts';
 
-interface Technology {
-  name: string;
-}
-
 interface Project {
   id: string;
   title: string;
@@ -14,7 +10,7 @@ interface Project {
   imagegif?: string;
   urlsite?: string;
   urlrepository?: string;
-  technologies: Technology[];
+  technologies: string[];
 }
 
 const Projetos: React.FC = () => {
@@ -105,7 +101,7 @@ const Projetos: React.FC = () => {
               <div className="flex flex-wrap gap-2">
                 {selectedProject.technologies.map((tech, index) => (
                   <span key={index} className="bg-[#202024] px-3 py-1 rounded-full text-xs text-[#408bec]">
-                    {tech.name}
+                    {tech}
                   </span>
                 ))}
               </div>

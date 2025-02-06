@@ -81,7 +81,7 @@ export const projectService = {
         imageGif: imageGifUrl,
         createdAt: new Date()
       };
-
+      
       console.log('Dados do projeto:', projectData);
       
       console.log('Criando documento no Firestore...');
@@ -106,7 +106,7 @@ export const projectService = {
       imageGif: doc.data().imageGif,
       urlsite: doc.data().urlsite,
       urlrepository: doc.data().urlrepository,
-      technologies: doc.data().technologies || [],
+      technologies: doc.data().technologies || [], 
       createdAt: doc.data().createdAt
     })) as Project[];
   },

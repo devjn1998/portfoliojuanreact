@@ -12,7 +12,7 @@ interface Project {
   imageGif?: string;
   urlsite?: string;
   urlrepository?: string;
-  technologies: { name: string }[];
+  technologies: string[];
   createdAt?: Date;
 }
 
@@ -28,6 +28,7 @@ const Dashboard: React.FC = () => {
         setLoading(true);
         setError(null);
         const data = await projectService.getAll();
+        console.log('Dados dos projetos:', data);
         setProjects(data as Project[]);
       } catch (error) {
         console.error('Erro ao carregar projetos:', error);
@@ -95,9 +96,9 @@ const Dashboard: React.FC = () => {
               <div className="bg-[#202024] p-6 rounded-lg">
                 <h4 className="text-xl font-bold mb-4 text-[#408bec]">Tecnologias usadas:</h4>
                 <div className="flex flex-wrap gap-3">
-                  {selectedProject.technologies.map((tech, index) => (
+                  {selectedProject.technologies && selectedProject.technologies.map((tech, index) => (
                     <span key={index} className="bg-[#408bec] px-4 py-2 rounded-full text-sm font-medium hover:bg-[#5a9fff] transition-colors duration-300">
-                      {tech.name}
+                      {tech}
                     </span>
                   ))}
                 </div>
@@ -153,6 +154,16 @@ const Dashboard: React.FC = () => {
                   <div className="p-4">
                     <h4 className="text-lg font-bold mb-2 text-[#408bec]">{project.title}</h4>
                     <p className="text-sm text-gray-300 line-clamp-3">{project.description}</p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span 
+                          key={index} 
+                          className="bg-[#408bec]/20 text-[#408bec] px-2 py-1 rounded-full text-xs"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))
