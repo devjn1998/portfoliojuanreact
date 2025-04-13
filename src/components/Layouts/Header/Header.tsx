@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import logoImage from "../../../assets/img/logotag.png";
 import Botao from "../../comum/Botao/Botao.tsx";
@@ -9,12 +9,6 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
     <header>
       <nav
@@ -24,9 +18,9 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => {
       >
         <div
           id="navbar"
-          className="flex justify-between items-center px-4 py-4"
+          className="flex flex-col md:flex-row justify-between items-center px-4 py-4"
         >
-          <div className="logo">
+          <div className="logo mb-4 md:mb-0">
             <Link to="/">
               <img
                 src={logoImage}
@@ -38,84 +32,37 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => {
 
           {/* Menu de navegação */}
           {isAuthenticated && (
-            <>
-              {/* Menu mobile com hamburguer */}
-              <div className="md:hidden">
-                <button
-                  className="text-white focus:outline-none"
-                  onClick={toggleMenu}
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+            <div className="w-full md:w-auto">
+              <ul className="flex flex-col md:flex-row items-center gap-4">
+                <li className="w-full md:w-auto text-center">
+                  <Botao
+                    tipo="nav"
+                    to="/cadastrar"
+                    className="w-full md:w-auto"
                   >
-                    {isMenuOpen ? (
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    ) : (
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 6h16M4 12h16M4 18h16"
-                      />
-                    )}
-                  </svg>
-                </button>
-              </div>
-
-              {/* Menu mobile expandido */}
-              <div
-                className={`${
-                  isMenuOpen ? "block" : "hidden"
-                } md:hidden absolute top-full left-0 w-full bg-[#13131f] z-50`}
-              >
-                <ul className="flex flex-col items-center py-4">
-                  <li className="w-full text-center py-2">
-                    <Botao tipo="nav" to="/cadastrar" className="w-full">
-                      Postar projetos
-                    </Botao>
-                  </li>
-                  <li className="w-full text-center py-2">
-                    <Botao tipo="nav" to="/dashboard" className="w-full">
-                      Meus projetos
-                    </Botao>
-                  </li>
-                  <li className="w-full text-center py-2">
-                    <Botao tipo="nav" onClick={onLogout} className="w-full">
-                      Sair
-                    </Botao>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Menu desktop */}
-              <div className="hidden md:block">
-                <ul className="flex flex-row items-center">
-                  <li className="mx-2">
-                    <Botao tipo="nav" to="/cadastrar">
-                      Postar projetos
-                    </Botao>
-                  </li>
-                  <li className="mx-2">
-                    <Botao tipo="nav" to="/dashboard">
-                      Meus projetos
-                    </Botao>
-                  </li>
-                  <li className="mx-2">
-                    <Botao tipo="nav" onClick={onLogout}>
-                      Sair
-                    </Botao>
-                  </li>
-                </ul>
-              </div>
-            </>
+                    Postar projetos
+                  </Botao>
+                </li>
+                <li className="w-full md:w-auto text-center">
+                  <Botao
+                    tipo="nav"
+                    to="/dashboard"
+                    className="w-full md:w-auto"
+                  >
+                    Meus projetos
+                  </Botao>
+                </li>
+                <li className="w-full md:w-auto text-center">
+                  <Botao
+                    tipo="nav"
+                    onClick={onLogout}
+                    className="w-full md:w-auto"
+                  >
+                    Sair
+                  </Botao>
+                </li>
+              </ul>
+            </div>
           )}
         </div>
       </nav>
