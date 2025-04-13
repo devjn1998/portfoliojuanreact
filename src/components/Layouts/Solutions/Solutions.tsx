@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
-import solutionsImage from '../../../assets/img/soluctionsapresentation.png';
-import backgroundImage from '../../../assets/img/background-apresentation-2.png';
-import Botao from '../../comum/Botao/Botao.tsx';
-import Title from '../../comum/Title/Title.tsx';
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
+import React, { useState } from "react";
+import backgroundImage from "../../../assets/img/background-apresentation-2.png";
+import solutionsImage from "../../../assets/img/soluctionsapresentation.png";
+import Botao from "../../comum/Botao/Botao.tsx";
+import Title from "../../comum/Title/Title.tsx";
 
 const Solutions: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<'success' | 'error' | null>(null);
+  const [status, setStatus] = useState<"success" | "error" | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -32,45 +34,47 @@ const Solutions: React.FC = () => {
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
-        to_email: 'juandev1998@gmail.com'
+        to_email: "juandev1998@gmail.com",
       };
 
       await emailjs.send(
-        'service_cu7r3pp',
-        'template_qcwzcbc',
+        "service_cu7r3pp",
+        "template_qcwzcbc",
         templateParams,
-        'GopptU0helcG_Jjpd'
+        "GopptU0helcG_Jjpd"
       );
 
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error('Erro ao enviar email:', error);
-      setStatus('error');
+      console.error("Erro ao enviar email:", error);
+      setStatus("error");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div 
+    <div
       className="min-h-screen w-full bg-cover bg-center py-12 px-4 text-white"
-      style={{backgroundImage: `url(${backgroundImage})`}}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
       data-aos="fade-right"
     >
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="w-full lg:w-1/2">
-            <img 
-              src={solutionsImage} 
-              alt="Apresentação" 
+            <img
+              src={solutionsImage}
+              alt="Apresentação"
               className="w-full max-w-md mx-auto"
             />
           </div>
 
           <div className="w-full lg:w-1/2">
-            <Title className="text-2xl font-bold text-center mb-12">Entre em Contato</Title>
-            
+            <Title className="text-2xl font-bold text-center mb-12">
+              Entre em Contato
+            </Title>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-white mb-2">Nome</label>
@@ -112,18 +116,22 @@ const Solutions: React.FC = () => {
                 type="submit"
                 disabled={loading}
                 className={`w-full bg-[#408bec] text-white py-3 rounded transition-all duration-300 
-                  ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#5a9fff]'}`}
+                  ${
+                    loading
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:bg-[#5a9fff]"
+                  }`}
               >
-                {loading ? 'Enviando...' : 'Enviar Mensagem'}
+                {loading ? "Enviando..." : "Enviar Mensagem"}
               </Botao>
 
-              {status === 'success' && (
+              {status === "success" && (
                 <div className="text-green-500 text-center">
                   Mensagem enviada com sucesso!
                 </div>
               )}
 
-              {status === 'error' && (
+              {status === "error" && (
                 <div className="text-red-500 text-center">
                   Erro ao enviar mensagem. Tente novamente.
                 </div>

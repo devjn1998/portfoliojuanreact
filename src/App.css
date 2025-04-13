@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+/* Estilos responsivos para mobile */
+@media (max-width: 768px) {
+  .App-header {
+    padding: 20px;
+  }
+
+  .App-logo {
+    height: 30vmin;
+  }
+
+  .App-link {
+    font-size: 16px;
+  }
+}
+
+/* Estilos para telas muito pequenas */
+@media (max-width: 480px) {
+  .App-header {
+    padding: 10px;
+  }
+
+  .App-logo {
+    height: 25vmin;
+  }
+
+  .App-link {
+    font-size: 14px;
+  }
+}

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import Title from '../../components/comum/Title/Title.tsx';
-import Botao from '../../components/comum/Botao/Botao.tsx';
-import technologiesData from '../../assets/json/technologies.json';
-import { projectService } from '../../services/firebase.ts';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import technologiesData from "../../assets/json/technologies.json";
+import Botao from "../../components/comum/Botao/Botao.tsx";
+import Title from "../../components/comum/Title/Title.tsx";
+import { projectService } from "../../services/firebase.ts";
 
 interface FormData {
   title: string;
   image: File | null;
-  imageGif: File | null;  
+  imageGif: File | null;
   urlsite: string;
   urlrepository: string;
   technologies: string[];
@@ -18,37 +18,39 @@ interface FormData {
 const CreateProject: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
-    title: '',
+    title: "",
     image: null,
     imageGif: null,
-    urlsite: '',
-    urlrepository: '',
+    urlsite: "",
+    urlrepository: "",
     technologies: [],
-    description: ''
+    description: "",
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const { name } = e.target;
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        [name]: e.target.files![0]
+        [name]: e.target.files![0],
       }));
     }
   };
 
   const handleTechnologyChange = (techName: string) => {
-    setFormData(prev => {
+    setFormData((prev) => {
       const technologies = prev.technologies.includes(techName)
-        ? prev.technologies.filter(tech => tech !== techName)
+        ? prev.technologies.filter((tech) => tech !== techName)
         : [...prev.technologies, techName];
       return { ...prev, technologies };
     });
@@ -58,37 +60,41 @@ const CreateProject: React.FC = () => {
     e.preventDefault();
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append('title', formData.title);
-      formDataToSend.append('description', formData.description);
-      formDataToSend.append('urlsite', formData.urlsite);
-      formDataToSend.append('urlrepository', formData.urlrepository);
-      formDataToSend.append('technologies', JSON.stringify(formData.technologies));
-      
+      formDataToSend.append("title", formData.title);
+      formDataToSend.append("description", formData.description);
+      formDataToSend.append("urlsite", formData.urlsite);
+      formDataToSend.append("urlrepository", formData.urlrepository);
+      formDataToSend.append(
+        "technologies",
+        JSON.stringify(formData.technologies)
+      );
+
       if (formData.image) {
-        formDataToSend.append('image', formData.image);
+        formDataToSend.append("image", formData.image);
       }
       if (formData.imageGif) {
-        formDataToSend.append('imageGif', formData.imageGif);
+        formDataToSend.append("imageGif", formData.imageGif);
       }
 
       await projectService.create(formDataToSend);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (error) {
-      console.error('Erro ao criar projeto:', error);
-      alert('Erro ao criar projeto. Tente novamente.');
+      console.error("Erro ao criar projeto:", error);
+      alert("Erro ao criar projeto. Tente novamente.");
     }
   };
 
   return (
-    <div id="event-createProject-container" className="container mx-auto px-4 min-h-screen flex items-center justify-center">
+    <div
+      id="event-createProject-container"
+      className="container mx-auto px-4 min-h-screen flex items-center justify-center"
+    >
       <div className="w-full py-8">
         <Title className="text-center mb-6">Criar Novo Projeto</Title>
         <div className="max-w-2xl mx-auto bg-[#13131f] p-8 rounded-lg shadow-lg">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="form-label-title">
-                Título do Projeto:
-              </label>
+              <label className="form-label-title">Título do Projeto:</label>
               <input
                 type="text"
                 name="title"
@@ -100,9 +106,7 @@ const CreateProject: React.FC = () => {
 
             <div className="form-group-midias">
               <div>
-                <label className="form-label-title">
-                  Imagem do Projeto:
-                </label>
+                <label className="form-label-title">Imagem do Projeto:</label>
                 <input
                   type="file"
                   name="image"
@@ -111,9 +115,7 @@ const CreateProject: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="form-label-title">
-                  GIF do Projeto:
-                </label>
+                <label className="form-label-title">GIF do Projeto:</label>
                 <input
                   type="file"
                   name="imageGif"
@@ -124,9 +126,7 @@ const CreateProject: React.FC = () => {
             </div>
 
             <div>
-              <label className="form-label-title">
-                URL do Projeto:
-              </label>
+              <label className="form-label-title">URL do Projeto:</label>
               <input
                 type="text"
                 name="urlsite"
@@ -137,9 +137,7 @@ const CreateProject: React.FC = () => {
             </div>
 
             <div>
-              <label className="form-label-title">
-                URL do Repositório:
-              </label>
+              <label className="form-label-title">URL do Repositório:</label>
               <input
                 type="text"
                 name="urlrepository"
@@ -153,7 +151,7 @@ const CreateProject: React.FC = () => {
               <label className="form-label-title block text-center mb-4">
                 Tecnologias usadas:
               </label>
-              <div className="grid grid-cols-3 gap-2 mt-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2">
                 {technologiesData.technologies.map((tech) => (
                   <div key={tech.id} className="flex items-center p-1">
                     <input
@@ -163,7 +161,10 @@ const CreateProject: React.FC = () => {
                       onChange={() => handleTechnologyChange(tech.name)}
                       className="mr-1"
                     />
-                    <label htmlFor={`tech-${tech.id}`} className="text-white text-sm">
+                    <label
+                      htmlFor={`tech-${tech.id}`}
+                      className="text-white text-sm"
+                    >
                       {tech.name}
                     </label>
                   </div>

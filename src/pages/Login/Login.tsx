@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { firebaseService } from '../../services/firebase.ts';
-import Botao from '../../components/comum/Botao/Botao.tsx';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Botao from "../../components/comum/Botao/Botao.tsx";
+import { firebaseService } from "../../services/firebase.ts";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -16,25 +16,25 @@ const Login: React.FC = () => {
     try {
       const userCredential = await firebaseService.login(email, password);
       const user = userCredential.user;
-      console.log('Usuário logado:', user.email);
-      navigate('/dashboard');
+      console.log("Usuário logado:", user.email);
+      navigate("/dashboard");
     } catch (error: any) {
-      console.error('Erro no login:', error);
+      console.error("Erro no login:", error);
       switch (error.code) {
-        case 'auth/invalid-email':
-          setError('Email inválido');
+        case "auth/invalid-email":
+          setError("Email inválido");
           break;
-        case 'auth/user-disabled':
-          setError('Usuário desabilitado');
+        case "auth/user-disabled":
+          setError("Usuário desabilitado");
           break;
-        case 'auth/user-not-found':
-          setError('Usuário não encontrado');
+        case "auth/user-not-found":
+          setError("Usuário não encontrado");
           break;
-        case 'auth/wrong-password':
-          setError('Senha incorreta');
+        case "auth/wrong-password":
+          setError("Senha incorreta");
           break;
         default:
-          setError('Erro ao fazer login. Tente novamente.');
+          setError("Erro ao fazer login. Tente novamente.");
       }
     } finally {
       setLoading(false);
@@ -42,7 +42,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="bg-[#202024] p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
         {error && (
@@ -73,11 +73,13 @@ const Login: React.FC = () => {
               disabled={loading}
             />
           </div>
-          <Botao 
-            type="submit" 
-            className={`w-full ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          <Botao
+            type="submit"
+            className={`w-full ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            {loading ? 'Entrando...' : 'Entrar'}
+            {loading ? "Entrando..." : "Entrar"}
           </Botao>
         </form>
       </div>
