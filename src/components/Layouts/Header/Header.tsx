@@ -36,77 +36,87 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => {
             </Link>
           </div>
 
-          {/* Botão do menu hamburguer para mobile - só aparece quando autenticado */}
-          {isAuthenticated && (
-            <button
-              className="block md:hidden text-white focus:outline-none"
-              onClick={toggleMenu}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {isMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          )}
-
           {/* Menu de navegação */}
-          <div
-            className={`navbar-nav ${
-              isMenuOpen ? "block" : "hidden"
-            } md:block absolute md:relative top-full left-0 w-full md:w-auto bg-[#13131f] md:bg-transparent z-50`}
-          >
-            <ul className="flex flex-col md:flex-row items-center py-4 md:py-0">
-              {isAuthenticated ? (
-                <>
-                  <li className="w-full md:w-auto text-center py-2 md:py-0">
-                    <Botao
-                      tipo="nav"
-                      to="/cadastrar"
-                      className="w-full md:w-auto"
-                    >
+          {isAuthenticated && (
+            <>
+              {/* Menu mobile com hamburguer */}
+              <div className="md:hidden">
+                <button
+                  className="text-white focus:outline-none"
+                  onClick={toggleMenu}
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    {isMenuOpen ? (
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    ) : (
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
+                    )}
+                  </svg>
+                </button>
+              </div>
+
+              {/* Menu mobile expandido */}
+              <div
+                className={`${
+                  isMenuOpen ? "block" : "hidden"
+                } md:hidden absolute top-full left-0 w-full bg-[#13131f] z-50`}
+              >
+                <ul className="flex flex-col items-center py-4">
+                  <li className="w-full text-center py-2">
+                    <Botao tipo="nav" to="/cadastrar" className="w-full">
                       Postar projetos
                     </Botao>
                   </li>
-                  <li className="w-full md:w-auto text-center py-2 md:py-0">
-                    <Botao
-                      tipo="nav"
-                      to="/dashboard"
-                      className="w-full md:w-auto"
-                    >
+                  <li className="w-full text-center py-2">
+                    <Botao tipo="nav" to="/dashboard" className="w-full">
                       Meus projetos
                     </Botao>
                   </li>
-                  <li className="w-full md:w-auto text-center py-2 md:py-0">
-                    <Botao
-                      tipo="nav"
-                      onClick={onLogout}
-                      className="w-full md:w-auto"
-                    >
+                  <li className="w-full text-center py-2">
+                    <Botao tipo="nav" onClick={onLogout} className="w-full">
                       Sair
                     </Botao>
                   </li>
-                </>
-              ) : null}
-            </ul>
-          </div>
+                </ul>
+              </div>
+
+              {/* Menu desktop */}
+              <div className="hidden md:block">
+                <ul className="flex flex-row items-center">
+                  <li className="mx-2">
+                    <Botao tipo="nav" to="/cadastrar">
+                      Postar projetos
+                    </Botao>
+                  </li>
+                  <li className="mx-2">
+                    <Botao tipo="nav" to="/dashboard">
+                      Meus projetos
+                    </Botao>
+                  </li>
+                  <li className="mx-2">
+                    <Botao tipo="nav" onClick={onLogout}>
+                      Sair
+                    </Botao>
+                  </li>
+                </ul>
+              </div>
+            </>
+          )}
         </div>
       </nav>
     </header>
