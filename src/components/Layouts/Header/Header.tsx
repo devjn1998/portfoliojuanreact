@@ -18,9 +18,9 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => {
       >
         <div
           id="navbar"
-          className="flex flex-col md:flex-row justify-between items-center px-4 py-4"
+          className="flex flex-row justify-between items-center px-4 py-4"
         >
-          <div className="logo mb-4 md:mb-0">
+          <div className="logo">
             <Link to="/">
               <img
                 src={logoImage}
@@ -32,36 +32,16 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => {
 
           {/* Menu de navegação */}
           {isAuthenticated && (
-            <div className="w-full md:w-auto">
-              <ul className="flex flex-col md:flex-row items-center gap-4">
-                <li className="w-full md:w-auto text-center">
-                  <Botao
-                    tipo="nav"
-                    to="/cadastrar"
-                    className="w-full md:w-auto"
-                  >
-                    Postar projetos
-                  </Botao>
-                </li>
-                <li className="w-full md:w-auto text-center">
-                  <Botao
-                    tipo="nav"
-                    to="/dashboard"
-                    className="w-full md:w-auto"
-                  >
-                    Meus projetos
-                  </Botao>
-                </li>
-                <li className="w-full md:w-auto text-center">
-                  <Botao
-                    tipo="nav"
-                    onClick={onLogout}
-                    className="w-full md:w-auto"
-                  >
-                    Sair
-                  </Botao>
-                </li>
-              </ul>
+            <div className="flex flex-row items-center gap-4">
+              <Botao tipo="nav" to="/cadastrar">
+                Postar projetos
+              </Botao>
+              <Botao tipo="nav" to="/dashboard">
+                Meus projetos
+              </Botao>
+              <Botao tipo="nav" onClick={onLogout}>
+                Sair
+              </Botao>
             </div>
           )}
         </div>
