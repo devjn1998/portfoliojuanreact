@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated, onLogout }) => {
           {/* Botão do menu hamburguer para mobile - só aparece quando autenticado */}
           {isAuthenticated && (
             <button
-              className="md:hidden text-white focus:outline-none"
+              className="block md:hidden text-white focus:outline-none"
               onClick={toggleMenu}
             >
               <svg
