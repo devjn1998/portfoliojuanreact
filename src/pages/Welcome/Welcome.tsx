@@ -102,13 +102,21 @@ const Welcome: React.FC = () => {
                 data-aos="fade-left"
                 data-aos-delay="1500"
               >
-                Desenvolvedor Front-End com experiência em Vue.js, React,
-                JavaScript, TypeScript e Styled Components, além de consumo de
-                APIs REST. Apaixonado pelo desenvolvimento de componentes
-                reutilizáveis. Também possui experiência em Back-End, utilizando
-                as tecnologias Laravel, Spring Boot e Node.js. Atualmente,
-                cursando Análise e Desenvolvimento de Sistemas na Estácio e
-                Desenvolvedor Full Stack Java na Ebac.
+                Desenvolvedor Full Stack com experiência em aplicações web
+                modernas, APIs RESTful e soluções completas com foco em perfomance
+                e escalabidade. Atuo com JavaScript, TypeScript, React, Node.js,
+                FastAPI e Spring Boot, além de ampla familiaridade com banco de dados 
+                relacionais (MySQL, PostgreSQL) e NoSQL (MongoDB, Firebase Firestore).
+
+                Tenho conhecimentos sólidos em MAchine LEarning com Python,
+                especialmente com pandas e scikit-learn, aplicando esses
+                recursos para análises, automações e protótipos de IA.
+                Experiência prática com Docker, versionamento com GIt e deploys
+                em AQS, Vercel e Firebase.
+                Participo de projetos próprios e também trabalho como freelancer, 
+                entregando soluções personalizadas para diferentes nichos.
+                Meu foco está em qualidade de código, arquitetura limpa, usabilidade
+                e entrega contínua.
               </p>
             </div>
           </div>
